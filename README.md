@@ -1,88 +1,91 @@
-# Team Task Manager — Python Backend (FastAPI + MongoDB)
+🚀 Team Task Manager (Full-Stack Web Application)
+📌 Description
 
-Minimal FastAPI backend with JWT auth, password hashing, and basic role-based access.
+A full-stack Team Task Manager application where users can create, assign, and track tasks within a team. It includes authentication, role-based access control, and task management features.
 
-## Folder structure
+✨ Features
 
-```
-backend_ethara/
-├── main.py            # FastAPI app + routes
-├── auth.py            # JWT + password hashing + dependencies
-├── database.py        # Mongo (motor) connection
-├── models.py          # Pydantic schemas
-├── requirements.txt
-└── .env               # copy from .env.example
-```
+🔐 User Authentication (Signup/Login using JWT)
+👥 Role-Based Access (Admin & Member)
+📝 Task Creation & Assignment
+🔄 Task Status Tracking (Pending, In Progress, Completed)
+📊 Dashboard to view tasks
+🌐 REST API integration
+✅ Input validation & secure backend
+🛠️ Tech Stack
 
-## Setup
+Frontend
+⚛️ React.js (Vite)
+🔗 Axios
+Backend
+⚡ FastAPI (Python)
+🔑 JWT Authentication
+Database
+🍃 MongoDB Atlas (NoSQL)
 
-1. Create a virtual environment (optional but recommended):
-   ```
-   python -m venv venv
-   venv\Scripts\activate          # Windows
-   # source venv/bin/activate     # macOS / Linux
-   ```
+🌐 Live Demo
 
-2. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+🔗 Frontend:
+https://team-task-manager-three-beryl.vercel.app
 
-3. Create a `.env` file from `.env.example`:
-   ```
-   MONGO_URI=mongodb://localhost:27017
-   DB_NAME=team_task_manager
-   JWT_SECRET=your_super_secret_key_change_me
-   JWT_ALGO=HS256
-   JWT_EXPIRE_MINUTES=10080
-   ```
+🔗 Backend API Docs:
+https://team-task-manager-production-a7ca.up.railway.app/docs
 
-4. Run the server:
-   ```
-   uvicorn main:app --reload
-   ```
+📂 GitHub Repository
 
-   API will be available at `http://localhost:8000`.
-   Interactive docs: `http://localhost:8000/docs`.
+👉 https://github.com/Payal149/Team-Task-Manager
 
-## Endpoints
+⚙️ How to Run Locally
 
-| Method | Path           | Auth        | Body                                                              |
-|--------|----------------|-------------|-------------------------------------------------------------------|
-| POST   | /signup        | public      | `{ name, email, password, role? }`                                |
-| POST   | /login         | public      | `{ email, password }`                                             |
-| POST   | /task          | admin only  | `{ title, description?, assignedTo, status?, deadline? }`         |
-| GET    | /tasks         | any user    | admins see all, members see only tasks assigned to them           |
-| PUT    | /task/{id}     | any user    | admins can doc = payload.dict()anything; members can only change `status`      |
+🔹 Clone the repository
+git clone https://github.com/Payal149/Team-Task-Manager
 
-Auth header: `Authorization: Bearer <token>`.
-Status values: `pending`, `in-progress`, `done`.
+🔹 Backend Setup
 
-## Quick test
+cd backend_ethara
+python -m venv venv
+venv\Scripts\activate   # Windows
+pip install -r requirements.txt
+uvicorn main:app --reload
 
-```bash
-# Signup as admin
-curl -X POST http://localhost:8000/signup \
-  -H "Content-Type: application/json" \
-  -d "{\"name\":\"Alice\",\"email\":\"alice@example.com\",\"password\":\"secret123\",\"role\":\"admin\"}"
+🔹 Frontend Setup
 
-# Login
-curl -X POST http://localhost:8000/login \
-  -H "Content-Type: application/json" \
-  -d "{\"email\":\"alice@example.com\",\"password\":\"secret123\"}"
+cd frontend_ethara
+npm install
+npm run dev
 
-# Create task (replace TOKEN)
-curl -X POST http://localhost:8000/task \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer TOKEN" \
-  -d "{\"title\":\"Write docs\",\"assignedTo\":\"alice@example.com\"}"
+🔑 Environment Variables
 
-# List tasks
-curl http://localhost:8000/tasks -H "Authorization: Bearer TOKEN"
+Backend (.env)
+MONGO_URI=your_mongodb_connection_string
+DB_NAME=team_task_manager
+JWT_SECRET=your_secret_key
+JWT_ALGO=HS256
+JWT_EXPIRE_MINUTES=10080
+Frontend (.env)
 
-# doc = payload.dict()status
-curl -X PUT http://localhost:8000/task/<TASK_ID> \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer TOKEN" \
-  -d "{\"status\":\"done\"}"
-```
+VITE_API_URL=https://team-task-manager-production-a7ca.up.railway.app
+
+📁 Project Structure
+
+Team-Task-Manager/
+│
+├── backend_ethara/      # FastAPI backend
+├── frontend_ethara/     # React frontend
+├── README.md
+
+🎯 Key Functionalities
+
+Admin can create and assign tasks
+Members can view and update tasks
+Secure authentication system
+Task tracking with status updates
+
+🔮 Future Improvements
+📌 Project management module
+🔔 Notification system
+📊 Advanced analytics dashboard
+📎 File attachments support
+
+👩‍💻 Author
+Payal
